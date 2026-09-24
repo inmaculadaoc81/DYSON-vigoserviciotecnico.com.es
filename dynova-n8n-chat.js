@@ -8,8 +8,8 @@ const target = document.querySelector('#n8n-chat');
 // El botón se crea como respaldo visible aunque el módulo remoto de n8n tarde o falle.
 const fallbackToggle = document.createElement('button');
 fallbackToggle.type = 'button';
-fallbackToggle.className = 'dyexpert-chat-fallback';
-fallbackToggle.setAttribute('aria-label', 'Abrir chatbot DyExpert');
+fallbackToggle.className = 'dynova-chat-fallback';
+fallbackToggle.setAttribute('aria-label', 'Abrir chatbot DyNova');
 fallbackToggle.innerHTML = '<span aria-hidden="true">💬</span><span>Chat</span>';
 document.body.appendChild(fallbackToggle);
 
@@ -20,8 +20,8 @@ const hideFallbackWhenReady = () => {
 const readyObserver = new MutationObserver(hideFallbackWhenReady);
 if (target) readyObserver.observe(target, { childList: true, subtree: true });
 
-if (target && !target.dataset.dyexpertChatInitialized) {
-  target.dataset.dyexpertChatInitialized = 'true';
+if (target && !target.dataset.dynovaChatInitialized) {
+  target.dataset.dynovaChatInitialized = 'true';
 
   fallbackToggle.addEventListener('click', () => {
     const realToggle = target.querySelector('.chat-window-toggle, [class*="chat-window-toggle"]');
@@ -39,11 +39,11 @@ if (target && !target.dataset.dyexpertChatInitialized) {
     showWelcomeScreen: true,
     defaultLanguage: 'es',
     initialMessages: [
-      'Buenas tardes 👋 ¿Qué avería tiene tu aspiradora Dyson? Cuéntanos el modelo y el problema para orientarte.'
+      'Buenas tardes 👋 ¿Qué avería tiene tu equipo Dyson? Cuéntanos el modelo y el problema para orientarte.'
     ],
     i18n: {
       es: {
-        title: 'DyExpert',
+        title: 'DyNova',
         subtitle: 'Asistente de servicio técnico',
         footer: '',
         getStarted: 'INICIAR CONVERSACIÓN',

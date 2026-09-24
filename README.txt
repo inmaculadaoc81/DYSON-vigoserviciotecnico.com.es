@@ -1,103 +1,51 @@
-DYEXPERT — SERVICIO TÉCNICO DE ASPIRADORAS DYSON EN SEVILLA
-========================================================
+DYNOVA SERVICIO TÉCNICO DYSON EN VIGO
+=====================================
 
-Repositorio clonado originalmente de PowerFlow (Grupo N8nLabs, automatización
-Power Automate). Se ha reconvertido por completo a DyExpert, servicio técnico de
-reparación de aspiradoras Dyson en Sevilla. Ningún texto de negocio ni enlace
-del repositorio original se ha mantenido salvo la infraestructura compartida
-de la familia (política de privacidad, patrón de checklist, chat n8n).
+Web de una sola página (HTML/CSS/JS estático + función serverless en Vercel)
+para DyNova, servicio técnico y reparación de equipos Dyson con recogida
+y entrega en Vigo y área metropolitana.
 
-Dominio: https://sevillaserviciotecnico.com.es/
-Marca: DyExpert Servicio Técnico de Aspiradoras Dyson en Sevilla
-Ficha de Google: https://maps.app.goo.gl/z9D9nTwbgQ2feP2d7
+Dominio: https://vigoserviciotecnico.com.es/
+Marca: DyNova Servicio Técnico Dyson en Vigo
+Nombre corto (og:site_name): DyNova – Vigo
+Ficha de Google: https://maps.app.goo.gl/YUuChxmNypFs5Ky17
+Mapa: iframe de Google Maps de la ficha "DyNova servicio técnico Dyson",
+insertado tal cual en la sección de contacto (ancho 100% vía CSS).
 
 DATOS DE CONTACTO
 - WhatsApp: +34 649 97 01 28.
-- Teléfono: +34 910 05 48 17 (el mismo número usado en otros repos de
-  reparación Dyson de la familia, ej. DysonValladolid — confirmado que es
-  correcto, no un error de copia).
-- Recogida a domicilio: https://sis.redsys.es/tiendaWeb/item/NDk4OzI= (botón
-  "Solicita tu recogida ahora" en el hero, dado explícitamente por el
-  cliente).
-- Reserva de citas: https://cal.com/kelatos/30min (patrón de la familia de
-  reparaciones, no el cal.com de N8nLabs que usaba el repo original).
+- Teléfono: +34 910 05 48 17.
+- Recogida a domicilio: https://sis.redsys.es/tiendaWeb/item/NDk4OzI=
+  (botón "Solicita tu recogida ahora" del hero, siempre en negro).
+- Horario: lunes a viernes de 09:30 a 18:00.
 - Política de privacidad: https://kelatos.com/privacy-policy/.
 
-DIRECCIÓN — PENDIENTE DE CONFIRMAR: no se ha mostrado una dirección postal
-exacta (calle y número) porque no se facilitó y no se ha podido obtener de
-forma fiable desde el enlace corto de Google Maps (pantalla de consentimiento
-bloquea el scraping). Por geocodificación inversa de las coordenadas del
-enlace, el negocio está en la zona de Calle del Emigrante / San Antón,
-Sevilla (CP 30009), pero NO se ha inventado un número de portal. El
-hero/footer/schema.org usan "Sevilla y área metropolitana" en su lugar. Si el
-cliente da la dirección exacta, añadirla al hero-info, footer y JSON-LD.
+DIRECCIÓN: no se muestra dirección postal. La web indica "Vigo y área
+metropolitana" y servicio de recogida y entrega; el taller está en Madrid.
+Si se confirma una dirección en Vigo, añadirla al hero, footer y JSON-LD.
 
-RENOMBRADO DE ARCHIVOS (limpieza de contaminación "powerflow"):
-powerflow.css→dyexpert.css, powerflow.js→dyexpert.js, powerflow-clients.css→
-dyexpert-clients.css, powerflow-header-hero.css→dyexpert-header-hero.css,
-powerflow-n8n-chat.css/.js→dyexpert-n8n-chat.css/.js, powerflow-restoration.css/
-.js→dyexpert-restoration.css/.js, powerflow-social-colors.css→
-dyexpert-social-colors.css, img/powerflow-hero-pattern.svg→
-img/dyexpert-hero-pattern.svg. Referencias actualizadas en index.html y en la
-carga dinámica de dyexpert.js. Variables CSS --pf-*→--dp-*.
+ESTRUCTURA
+- index.html: toda la página (hero, ventajas, reparación rápida, confianza,
+  servicios, por qué elegirnos, cómo trabajamos, contacto + mapa, FAQ, texto
+  SEO, footer, cookies y JSON-LD).
+- style.css: base de la plantilla.
+- mobile-navigation.css, social-footer.css, cal-booking.css: ajustes compartidos.
+- dynova.css: identidad visual de la marca (una sola capa, sin
+  sobrescrituras en cascada).
+- dynova-header-hero.css: cabecera grafito con logotipo blanco.
+- dynova.js: menú móvil (se cierra al pulsar un enlace), formulario y
+  preferencias de cookies (clave localStorage "dynova_cookie_preference").
+- dynova-n8n-chat.js / .css: chatbot n8n con webhook compartido del grupo
+  y botón de respaldo.
+- api/contacto.js: envío del formulario por SMTP (variables SMTP_HOST,
+  SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASS y CONTACT_EMAIL en Vercel).
+- img/: isotipo, patrón e ilustraciones SVG de la marca.
+- robots.txt y sitemap.xml apuntan a https://vigoserviciotecnico.com.es/.
 
-COLOR — cobre y grafito (nueva paleta, distinta de toda la familia):
-Se ha sustituido la identidad azul/magenta de PowerFlow por una paleta cobre
-(--green:#ad592a y derivados) + grafito oscuro + acento verde azulado
-(--dp-magenta:#3ccec2), aplicada mediante rotación de tono (HSL) sobre TODOS
-los colores de marca (hex y rgba) de dyexpert.css, dyexpert-header-hero.css,
-dyexpert-restoration.css, dyexpert-n8n-chat.css y el patrón SVG del hero —
-preservando saturación y luminosidad exactas, así que todos los contrastes,
-degradados y estados hover quedan intactos, solo cambia el matiz. El verde de
-WhatsApp y los colores reales de cada red social (Facebook, YouTube, etc. en
-dyexpert-social-colors.css) se han dejado sin tocar a propósito.
-
-LOGOTIPO: se ha sustituido el logo de imagen (webp heredado de PowerFlow) por
-un isotipo SVG propio (img/dyexpert-isotype.svg, y su versión inline en
-cabecera/footer): un motivo de ciclón/espiral (alusión a la tecnología
-ciclónica de Dyson) en cobre y verde azulado sobre grafito, junto al
-logotipo "DyExpert" en texto. Pensado para poder reutilizar la misma forma con
-otro color en futuras marcas de la familia.
-
-CONTENIDO: reescrito por completo (hero, servicios, por qué elegirnos, cómo
-funciona, texto SEO, footer, schema.org) para reparación de aspiradoras
-Dyson, no automatización de procesos. El formulario de contacto cambia el
-campo "empresa" (sin sentido para un cliente particular) por "modelo"
-(modelo de la aspiradora, opcional) — actualizado también en
-api/contacto.js.
-
-SECCIONES AÑADIDAS (a petición del cliente, con capturas de referencia de un
-sitio hermano de la familia — adaptadas al contexto de DyExpert, sin copiar
-literalmente donde no aplicaba):
-- "Reparación en 2 horas" (#rapidez), justo después del hero.
-- "Confianza" (#confianza), sustituye la antigua tarjeta única de Google por
-  dos tarjetas (Google Business + YouTube), con el estilo cobre/grafito.
-- Preguntas frecuentes (#faq), antes de la sección SEO final. Se ha ajustado
-  la pregunta "¿Qué productos Dyson reparáis?" a "¿Qué aspiradoras Dyson
-  reparáis?", porque DyExpert es específicamente servicio técnico de
-  aspiradoras (no seca­dores Supersonic/Airwrap como el sitio de referencia).
-
-ELIMINADO A PETICIÓN DEL CLIENTE: las dos imágenes decorativas del hero
-(hero1/hero2, .hero-side-img) y sus reglas CSS asociadas en dyexpert.css y
-dyexpert-header-hero.css (huérfanas tras quitar las imágenes). Borrados también
-los archivos de imagen ya sin ninguna referencia: hero1/hero2-powerflow-*.webp,
-logo-1ok-PowerFlow-*.webp (logo antiguo, sustituido por el SVG) e icono.jpg
-(favicon antiguo, sustituido por dyexpert-isotype.svg). NO se ha tocado
-img/icono-automatizacion-tuerca-foco.svg (decoración de fondo de la sección
-"por qué elegirnos"): sigue enlazada desde dyexpert-restoration.css, no estaba
-huérfana — se borró por error en un primer barrido y se restauró.
-
-CHATBOT: dyexpert-n8n-chat.js usa el webhook real compartido del grupo
-(sswebhookss.affirmatechnology.com), el mismo que el resto de la familia.
-Se ha eliminado el script de chat inline y roto que tenía el index.html
-original (placeholder 'PENDIENTE_URL_WEBHOOK_N8N_POWERFLOW' nunca
-configurado); el chat real ya lo carga dyexpert.js de forma dinámica, como en
-el resto de repos de la familia.
-
-PENDIENTE DE VALORAR POR EL CLIENTE:
-- Confirmar la dirección postal exacta (ver arriba).
-- La franja "trusted"/clientes (dyexpert-clients.js, vía dyexpert-clients.css) usa
-  el mismo listado de marcas del Grupo Kelatos que otros repos (Kelatos,
-  GameFix, Start Monitor, Surface Labs, DellTech, Video Convert, Alquiler
-  Ordenadores Madrid). Se ha mantenido igual que en PowerFlow por ser
-  infraestructura compartida de familia, no específica de automatización.
+PALETA: amarillo industrial, grafito y gris acero (señalización y herramienta profesional).
+- Ámbar #F2B705 · oscuro #D99E00 · bronce #6B4A00 (franja superior, sección oscura)
+- Ámbar de texto #8F6500 para títulos en cursiva, enlaces e iconos sobre fondo claro
+- Texto negro #17191C sobre botones ámbar (el blanco sobre amarillo no es legible)
+- Grafito (cabecera, footer, cookies, tarjeta de Google) #17191C · gris acero #A9B2BE
+Excepciones: WhatsApp conserva su verde y YouTube su rojo corporativo.
+En móvil (≤720px) no se muestran las ilustraciones laterales del hero.
